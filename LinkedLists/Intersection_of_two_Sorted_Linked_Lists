@@ -21,9 +21,9 @@ struct Node* intersectionOfLists(struct Node* head1, struct Node* head2)
 
 
 
-struct Node* intersectionOfLists(struct Node* head1, struct Node* head2)
+struct Node* sortedIntersect(struct Node* head1, struct Node* head2)
 {
-    if(head1 == NULL || head2 == NULL)
+   if(head1 == NULL || head2 == NULL)
     {
         return NULL;
     }
@@ -39,16 +39,21 @@ struct Node* intersectionOfLists(struct Node* head1, struct Node* head2)
              head2 = head2 -> next;
           else
             if(lastPtr != NULL){
-             lastPtr -> next = temp;
+               struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+               temp -> data = head1 -> data;
+               temp -> next = NULL;
+               lastPtr -> next = temp;
+               lastPtr = temp;
             }
-            
-            struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
-            temp -> data = head1 -> data;
-            temp -> next = NULL;
-            head1 = head1 -> next;
-            head2 = head2 -> next;
-            lastPtr = temp;
-          
+           else{
+              struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+              temp -> data = head1 -> data;
+              temp -> next = NULL;
+              lastPtr = temp;
+           }
+              head1 = head1 -> next;
+              head2 = head2 -> next;
+              
     }
     return lastPtr;
 }
