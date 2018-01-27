@@ -1,1 +1,7 @@
 
+void printReverse(struct Node* head){
+   if(head==NULL)
+     return;
+   printReverse(head -> next);   
+   printf("%d", head -> data);
+}
